@@ -389,7 +389,7 @@ class AES_CTR_128_algorithm(Scene):
         self.play(FadeIn(paragraph_group, shift=DOWN, scale=0.5))
         self.wait(2)
 
-        # Optionally fade out the paragraph group afterward
+        # Fade out the paragraph group afterward
         self.play(FadeOut(paragraph_group, shift=UP, scale=2),FadeOut(explanation_text, shift=UP, scale=2))
 
         # Display the table and wait
@@ -403,17 +403,14 @@ class AES_CTR_128_algorithm(Scene):
 
         # Create a matrix using Manim's Matrix class
         matrix = Matrix([
-            [0x32, 0x88, 0x31, 0xe0],
-            [0x43, 0x5a, 0x98, 0x37],
-            [0xf3, 0x30, 0xa2, 0x07],
-            [0xa8, 0x8d, 0xa2, 0x34]
+            [f"{0x32:02X}", f"{0x88:02X}", f"{0x31:02X}", f"{0xE0:02X}"],
+            [f"{0x43:02X}", f"{0x5A:02X}", f"{0x98:02X}", f"{0x37:02X}"],
+            [f"{0xF3:02X}", f"{0x30:02X}", f"{0xA2:02X}", f"{0x07:02X}"],
+            [f"{0xA8:02X}", f"{0x8D:02X}", f"{0xA2:02X}", f"{0x34:02X}"]
         ])
 
         # Add the matrix to the scene
-        self.add(matrix)
-
-        # Optionally, you can animate the appearance of the matrix
-        self.play(Create(matrix))
+        self.play(ReplacementTransform(table_top,matrix),FadeOut(table_bottom))
         self.wait()
 
      
